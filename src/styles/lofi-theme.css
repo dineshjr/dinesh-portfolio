@@ -1,0 +1,317 @@
+/* ============================================
+   LOFI THEME — warm cream aesthetic styles
+   ============================================ */
+
+/* ── Grain Overlay (global) ── */
+#root {
+  position: relative;
+  min-height: 100vh;
+}
+
+#root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/textures/grain.png");
+  background-size: 200px 200px;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: var(--z-fixed);
+  animation: grain 0.8s steps(1) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10%       { transform: translate(-2%, -3%); }
+  20%       { transform: translate(3%, 1%); }
+  30%       { transform: translate(-1%, 4%); }
+  40%       { transform: translate(2%, -2%); }
+  50%       { transform: translate(-3%, 3%); }
+  60%       { transform: translate(1%, -1%); }
+  70%       { transform: translate(-2%, 2%); }
+  80%       { transform: translate(3%, -3%); }
+  90%       { transform: translate(-1%, 1%); }
+}
+
+/* ── Warm Ambient Glow (background orbs) ── */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: var(--z-behind);
+}
+
+.ambient-orb--gold {
+  background: radial-gradient(circle, rgba(240, 192, 96, 0.25) 0%, transparent 70%);
+}
+
+.ambient-orb--amber {
+  background: radial-gradient(circle, rgba(200, 135, 74, 0.2) 0%, transparent 70%);
+}
+
+.ambient-orb--brown {
+  background: radial-gradient(circle, rgba(139, 94, 60, 0.15) 0%, transparent 70%);
+}
+
+/* ── Lofi Card Base ── */
+.lofi-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-normal) var(--ease-bounce),
+              box-shadow var(--duration-normal) var(--ease-default),
+              border-color var(--duration-normal) var(--ease-default);
+  position: relative;
+  overflow: hidden;
+}
+
+.lofi-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 240, 232, 0.4) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.lofi-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  border-color: var(--border-warm);
+}
+
+/* ── Lofi Section Heading ── */
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.section-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--amber);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.section-title span {
+  color: var(--amber);
+  position: relative;
+}
+
+.section-title span::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--glow));
+  border-radius: var(--radius-full);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-expo);
+}
+
+.section-title span:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Lofi Tag / Badge ── */
+.lofi-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background: rgba(200, 135, 74, 0.12);
+  border: 1px solid rgba(200, 135, 74, 0.25);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--amber);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ── Glow Button ── */
+.btn-lofi {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: var(--amber);
+  color: var(--cream);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  cursor: none;
+  transition: all var(--duration-normal) var(--ease-bounce);
+  box-shadow: 0 4px 15px rgba(200, 135, 74, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-lofi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.btn-lofi:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(200, 135, 74, 0.5), var(--shadow-glow);
+}
+
+.btn-lofi:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-lofi--ghost {
+  background: transparent;
+  color: var(--amber);
+  border: 1px solid var(--border-warm);
+  box-shadow: none;
+}
+
+.btn-lofi--ghost:hover {
+  background: rgba(200, 135, 74, 0.1);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ── Divider ── */
+.lofi-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-warm) 30%,
+    var(--amber) 50%,
+    var(--border-warm) 70%,
+    transparent 100%
+  );
+  margin-block: var(--space-8);
+}
+
+/* ── Text gradient ── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--amber) 0%, var(--glow) 50%, var(--warm) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Scrolling marquee ── */
+.marquee-track {
+  display: flex;
+  gap: var(--space-6);
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Waveform bars ── */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+}
+
+.waveform-bar {
+  width: 3px;
+  background: var(--amber);
+  border-radius: var(--radius-full);
+  animation: waveform 1.2s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(1) { animation-delay: 0s;    height: 40%; }
+.waveform-bar:nth-child(2) { animation-delay: 0.1s;  height: 80%; }
+.waveform-bar:nth-child(3) { animation-delay: 0.2s;  height: 60%; }
+.waveform-bar:nth-child(4) { animation-delay: 0.3s;  height: 100%; }
+.waveform-bar:nth-child(5) { animation-delay: 0.15s; height: 70%; }
+.waveform-bar:nth-child(6) { animation-delay: 0.25s; height: 50%; }
+.waveform-bar:nth-child(7) { animation-delay: 0.05s; height: 90%; }
+
+@keyframes waveform {
+  0%, 100% { transform: scaleY(0.4); }
+  50%       { transform: scaleY(1); }
+}
+
+/* ── Page load overlay ── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s var(--ease-expo), visibility 0.6s;
+}
+
+.page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader__text {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--cream);
+  letter-spacing: 0.1em;
+}
+
+/* ── Floating animation ── */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-slow {
+  animation: float 10s ease-in-out infinite;
+}
+
+.float-delay {
+  animation: float 8s ease-in-out 2s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(1deg); }
+  66%       { transform: translateY(-6px) rotate(-0.5deg); }
+}

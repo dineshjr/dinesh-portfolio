@@ -1,0 +1,269 @@
+/* ============================================
+   ANIMATIONS — GSAP-ready classes + CSS anims
+   ============================================ */
+
+/* ── GSAP Reveal Base States ── */
+/* Elements start hidden; GSAP animates them in */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  will-change: opacity, transform;
+}
+
+.reveal-fade {
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Once GSAP fires, these classes are added */
+.revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Stagger children ── */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+}
+
+/* ── GSAP SplitText base ── */
+.split-text {
+  overflow: hidden;
+}
+
+.split-text .word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.split-text .char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ── Hover lift ── */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-bounce),
+              box-shadow var(--duration-normal) var(--ease-default);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ── Hover glow ── */
+.hover-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-default);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow), var(--shadow-amber);
+}
+
+/* ── Magnetic button base (GSAP handles movement) ── */
+.magnetic {
+  display: inline-flex;
+  position: relative;
+  cursor: none;
+}
+
+/* ── Tilt card (GSAP handles 3D tilt) ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.tilt-card__inner {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* ── Page transition overlay ── */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: var(--z-modal);
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+/* ── Typewriter cursor ── */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--amber);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Spinning ring ── */
+.spin-ring {
+  animation: spinRing 8s linear infinite;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.spin-ring-reverse {
+  animation: spinRing 12s linear infinite reverse;
+}
+
+/* ── Pulse dot ── */
+.pulse-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-dot::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulseDot 2s ease-out infinite;
+}
+
+@keyframes pulseDot {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ── Number counter (GSAP animates the value) ── */
+.counter {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ── Parallax layer ── */
+.parallax-layer {
+  will-change: transform;
+}
+
+.parallax-slow   { --parallax-speed: 0.3; }
+.parallax-medium { --parallax-speed: 0.6; }
+.parallax-fast   { --parallax-speed: 0.9; }
+
+/* ── Scroll progress bar ── */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--amber), var(--glow));
+  transform-origin: left;
+  z-index: var(--z-fixed);
+  box-shadow: 0 0 8px rgba(240, 192, 96, 0.6);
+}
+
+/* ── Card shimmer loading ── */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(245, 240, 232, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Underline draw ── */
+.underline-draw {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-draw::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-expo);
+}
+
+.underline-draw:hover::after,
+.underline-draw.active::after {
+  transform: scaleX(1);
+}
+
+/* ── 3D Canvas wrapper ── */
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-wrapper canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── Active nav dot ── */
+.nav-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--amber);
+  transition: all var(--duration-normal) var(--ease-bounce);
+}
+
+.nav-dot.active {
+  width: 20px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 8px rgba(200, 135, 74, 0.6);
+}
