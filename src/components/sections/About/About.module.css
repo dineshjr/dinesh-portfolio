@@ -1,0 +1,181 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bioCard {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber), var(--warm));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(200, 135, 74, 0.4);
+}
+
+.bioTop {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.bioName {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.bioRole {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--amber);
+    letter-spacing: 0.1em;
+}
+
+.bioText {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+}
+
+.statCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 140px;
+}
+
+.statNum {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--amber), var(--glow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.statDesc {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+.techSection {
+    margin-top: 1rem;
+}
+
+.techTitle {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.techGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.techItem {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-lg);
+    background: rgba(200, 135, 74, 0.06);
+    border: 1px solid var(--border-soft);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    cursor: default;
+}
+
+.techItem:hover {
+    background: rgba(200, 135, 74, 0.12);
+    border-color: var(--border-warm);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.levelDots {
+    display: flex;
+    gap: 2px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--border-soft);
+}
+
+.dotFilled {
+    background: var(--amber);
+}
+
+.currentCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.currentItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-lg);
+    background: rgba(200, 135, 74, 0.04);
+    border: 1px solid var(--border-soft);
+}
+
+.currentEmoji {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.currentText {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+}
+
+.currentText strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
