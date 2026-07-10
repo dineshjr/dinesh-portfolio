@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import { useAmbientSound } from "@/hooks/useAmbientSound";

@@ -2,6 +2,11 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+const pseudoRandom = (seed: number) => {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+};
+
 interface FloatingParticlesProps {
   count?: number;
   spread?: number;
@@ -32,16 +37,16 @@ export function FloatingParticles({
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      positions[i3]     = (Math.random() - 0.5) * spread;
-      positions[i3 + 1] = (Math.random() - 0.5) * spread;
-      positions[i3 + 2] = (Math.random() - 0.5) * spread * 0.5;
+      positions[i3]     = (pseudoRandom(i + 1) - 0.5) * spread;
+      positions[i3 + 1] = (pseudoRandom(i + 11) - 0.5) * spread;
+      positions[i3 + 2] = (pseudoRandom(i + 21) - 0.5) * spread * 0.5;
 
-      const c = warmColors[Math.floor(Math.random() * warmColors.length)];
+      const c = warmColors[Math.floor(pseudoRandom(i + 31) * warmColors.length)];
       colors[i3]     = c.r;
       colors[i3 + 1] = c.g;
       colors[i3 + 2] = c.b;
 
-      phases[i] = Math.random() * Math.PI * 2;
+      phases[i] = pseudoRandom(i + 41) * Math.PI * 2;
     }
 
     return { positions, colors, phases };

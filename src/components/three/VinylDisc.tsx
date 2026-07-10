@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 interface VinylDiscProps {
@@ -8,7 +7,7 @@ interface VinylDiscProps {
     coverUrl?: string;
 }
 
-export function VinylDisc({ isPlaying = false, coverUrl }: VinylDiscProps) {
+export function VinylDisc({ isPlaying = false }: VinylDiscProps) {
     const discRef = useRef<THREE.Group>(null);
     const labelRef = useRef<THREE.Mesh>(null);
     const speedRef = useRef(0);

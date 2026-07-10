@@ -2,6 +2,21 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+function PlateGroup({ x }: { x: number }) {
+    return (
+        <group position={[x, 0, 0]}>
+            <mesh castShadow>
+                <cylinderGeometry args={[0.42, 0.42, 0.1, 32]} />
+                <meshStandardMaterial color={0x2a2018} roughness={0.3} metalness={0.8} />
+            </mesh>
+            <mesh castShadow position={[x > 0 ? -0.06 : 0.06, 0, 0]}>
+                <cylinderGeometry args={[0.35, 0.35, 0.1, 32]} />
+                <meshStandardMaterial color={0x3d2314} roughness={0.4} metalness={0.6} />
+            </mesh>
+        </group>
+    );
+}
+
 export function DumbbellOrbit() {
     const groupRef = useRef<THREE.Group>(null);
     const orbitRef = useRef<THREE.Group>(null);
@@ -17,27 +32,12 @@ export function DumbbellOrbit() {
         }
     });
 
-    const PlateGroup = ({ x }: { x: number }) => (
-        <group position={[x, 0, 0]}>
-            {/* Outer plate */}
-            <mesh castShadow>
-                <cylinderGeometry args={[0.42, 0.42, 0.1, 32]} />
-                <meshStandardMaterial color={0x2a2018} roughness={0.3} metalness={0.8} />
-            </mesh>
-            {/* Inner plate */}
-            <mesh castShadow position={[x > 0 ? -0.06 : 0.06, 0, 0]}>
-                <cylinderGeometry args={[0.35, 0.35, 0.1, 32]} />
-                <meshStandardMaterial color={0x3d2314} roughness={0.4} metalness={0.6} />
-            </mesh>
-        </group>
-    );
-
     return (
         <group ref={groupRef}>
             <group ref={orbitRef}>
                 {/* Bar */}
-                <mesh castShadow>
-                    <cylinderGeometry args={[0.06, 0.06, 2.4, 16]} rotation={[0, 0, Math.PI / 2]} />
+                <mesh castShadow rotation={[0, 0, Math.PI / 2]}>
+                    <cylinderGeometry args={[0.06, 0.06, 2.4, 16]} />
                     <meshStandardMaterial color={0xc8874a} roughness={0.2} metalness={0.9} />
                 </mesh>
 

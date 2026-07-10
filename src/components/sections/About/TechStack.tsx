@@ -2,7 +2,7 @@ import { useState } from "react";
 import { techStack, techCategories } from "@/data/techStack";
 import { LofiTag } from "@/components/ui/LofiTag";
 // import styles from "./About.module.css";
-import styles from "./About.module.css";'
+import styles from "./About.module.css";
 
 export function TechStack() {
     const [activeCategory, setActiveCategory] = useState<string>("Frontend");

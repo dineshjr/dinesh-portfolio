@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "./gsap.config";
+import { gsap } from "./gsap.config";
 
 type SplitType = "chars" | "words" | "lines";
 
