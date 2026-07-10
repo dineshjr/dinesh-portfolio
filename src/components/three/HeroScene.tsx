@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment, Float } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import * as THREE from "three";
 // import { FloatingParticles } from "./FloatingParticles";
 import {FloatingParticles} from "@/components/three/FloatingParticles"

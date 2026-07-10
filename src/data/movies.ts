@@ -80,7 +80,7 @@ export const movies: Movie[] = [
     id: 6,
     title: "Whiplash",
     year: 2014,
-    genres: ["Drama", "Music"],
+    genres: ["Drama"],
     rating: 10,
     poster: "https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
     description:

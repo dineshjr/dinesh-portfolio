@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, MeshDistortMaterial } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { getFloatValues } from "@/lib/three.utils";
 
@@ -77,21 +77,11 @@ export function CassetteModel({
     position = [0, 0, 0],
     scale = 1,
 }: CassetteModelProps) {
-    // Try to load GLB — fall back to procedural if not available
-    let gltf: ReturnType<typeof useGLTF> | null = null;
-    try {
-        gltf = useGLTF("/models/cassette.glb");
-    } catch {
-        gltf = null;
-    }
+    const gltf = useGLTF("/models/cassette.glb");
 
     const groupRef = useRef<THREE.Group>(null);
 
-    useFrame(({ clock }) => {
-        if (!groupRef.current || gltf?.scene) return;
-    });
-
-    if (!gltf) {
+    if (!gltf.scene) {
         return (
             <group position={position} scale={scale}>
                 <ProceduralCassette scrollProgress={scrollProgress} />
